@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Technician Calibration Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">
+        ⚙️
+    </div>
+
+    <h1>Technician Calibration Portal</h1>
+    <p>Truck Calibration Data Viewer</p>
+</div>
+
+
+<div class="container">
+
+    <div class="truck-icon">
+        🚚
+    </div>
+
+    <h2>Search Calibration Data</h2>
+
+    <input 
+        id="vinInput" 
+        type="text" 
+        placeholder="Enter VIN"
+    >
+
+    <button onclick="loadCalibration()">
+        Load Data
+    </button>
+
+    <button onclick="logout()">
+        Logout
+    </button>
+
+
+    <h2>Calibration Information</h2>
+
+    <pre id="calibrationData">
+No data loaded
+    </pre>
+
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp } from 
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBJU0eISC9PZQbUNY-vS8DK1hRwDMeFVDk",
+  authDomain: "spifcalibrationdata.firebaseapp.com",
+  projectId: "spifcalibrationdata",
+  storageBucket: "spifcalibrationdata.firebasestorage.app",
+  messagingSenderId: "119193036334",
+  appId: "1:119193036334:web:ec607848b74e054d3521bf",
+  measurementId: "G-DWMQZXKFJ9"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const auth = getAuth(app);
+
+
+// Protect page
+onAuthStateChanged(auth, (user)=>{
+
+    if(!user){
+
+        window.location.href =
+        "login.html";
+
+    }
+
+});
+
+
+// Retrieve calibration
+window.loadCalibration = async function(){
+
+    const vin =
+        document.getElementById("vinInput")
+        .value
+        .trim();
+
+
+    if(!vin){
+
+        alert("Enter VIN");
+        return;
+
+    }
+
+
+    try{
+
+        const calibrationRef =
+            collection(
+                db,
+                "trucks",
+                vin,
+                "calibrations"
+            );
+
+
+        const snapshot =
+            await getDocs(calibrationRef);
+
+
+        if(snapshot.empty){
+
+            document.getElementById(
+                "calibrationData"
+            ).textContent =
+            "No calibration found";
+
+            return;
+
+        }
+
+
+        let latestDoc = null;
+        let latestDate = null;
+
+
+        snapshot.forEach((doc)=>{
+
+            let dateString = doc.id;
+
+
+            let docDate =
+                new Date(
+                    dateString
+                    .replaceAll("\\","/")
+                    .replace(
+                        /(\d{4})\/(\d{2})\/(\d{2})-(\d{2}):(\d{2}):(\d{2})/,
+                        "$1-$2-$3T$4:$5:$6"
+                    )
+                );
+
+
+            if(
+                latestDate === null ||
+                docDate > latestDate
+            ){
+
+                latestDate = docDate;
+                latestDoc = doc;
+
+            }
+
+        });
+
+
+        if(latestDoc){
+
+            document.getElementById(
+                "calibrationData"
+            ).textContent =
+            JSON.stringify(
+                latestDoc.data(),
+                null,
+                4
+            );
+
+        }
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        document.getElementById(
+            "calibrationData"
+        ).textContent =
+        "Error loading data";
+
+    }
+
+};
+
+
+// Logout
+window.logout = function(){
+
+    signOut(auth)
+    .then(()=>{
+
+        window.location.href =
+        "login.html";
+
+    });
+
+};
+
+
+</script>
+<script type="module" src="protect.js"></script>
+
+</body>
+
+</html>
