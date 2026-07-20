@@ -96,6 +96,10 @@ function displayCalibrationData(data){
             <td>VIN</td>
             <td>${data.VIN ?? ""}</td>
         </tr>
+        <tr>
+            <td>VIN</td>
+            <td>${data.scheInfo ?? ""}</td>
+        </tr>
     `;
 }
 
