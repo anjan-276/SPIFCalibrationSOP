@@ -73,17 +73,20 @@ window.loadCalibration = async function () {
 
         const snapshot =
             await getDocs(calibrationRef);
+        // Clear previous results
+        document.getElementById("message").innerHTML = "";
+        document.getElementById("calibrationList").innerHTML = "";
 
         if (snapshot.empty) {
 
-            document.getElementById(
-                "calibrationData"
-            ).textContent =
-                "No calibration found";
+    document.getElementById("message").innerHTML =
+        "<p style='color:red;'>VIN not found.</p>";
 
-            return;
+    document.getElementById("calibrationSection").style.display =
+        "none";
 
-        }
+    return;
+}
 
         let latestDoc = null;
         let latestDate = null;
