@@ -119,6 +119,7 @@ window.loadCalibration = async function () {
 
         const calibrationList =
     document.getElementById("calibrationList");
+    document.getElementById("calibrationSection").style.display = "block";
 
 calibrationList.innerHTML = "";
 
