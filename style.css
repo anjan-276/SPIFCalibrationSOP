@@ -140,3 +140,49 @@ a:hover {
 .calibration-table th{
     background:#f5f5f5;
 }
+.spacing-container{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.spacing-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+}
+
+.weights-wrapper{
+    display:flex;
+    gap:20px;
+}
+
+.weight-container{
+    flex:1;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+}
+
+.weight-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.weight-table th,
+.weight-table td{
+    border:1px solid #dcdcdc;
+    padding:8px;
+    text-align:center;
+}
+
+.weight-table th{
+    background:#f5f5f5;
+}
+
+@media(max-width:900px){
+    .weights-wrapper{
+        flex-direction:column;
+    }
+}
