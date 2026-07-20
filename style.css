@@ -96,3 +96,25 @@ a:hover {
     color: #6b7280;
     font-size: 14px;
 }
+.calibration-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    background:white;
+}
+
+.calibration-table th,
+.calibration-table td{
+    border:1px solid #dcdcdc;
+    padding:10px;
+    text-align:center;
+}
+
+.calibration-table th{
+    background:#f3f4f6;
+    font-weight:600;
+}
+
+.calibration-table tr:nth-child(even){
+    background:#fafafa;
+}
