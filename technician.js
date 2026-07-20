@@ -163,9 +163,15 @@ window.loadCalibration = async function () {
         });
 
         if (latestDoc) {
-            displayCalibrationData(
+            sessionStorage.setItem(
+            "calibrationData",
+            JSON.stringify(
             latestDoc.data()
-            );
+        )
+);
+
+window.location.href =
+    "calibration.html";
 
         }
 

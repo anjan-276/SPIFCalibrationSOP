@@ -118,3 +118,25 @@ a:hover {
 .calibration-table tr:nth-child(even){
     background:#fafafa;
 }
+.card{
+    background:white;
+    padding:20px;
+    margin:20px 0;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.calibration-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.calibration-table td,
+.calibration-table th{
+    border:1px solid #ddd;
+    padding:10px;
+}
+
+.calibration-table th{
+    background:#f5f5f5;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calibration Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Truck Calibration Data</h1>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Axle Spacing</h2>
+
+        <table class="calibration-table">
+            <tr>
+                <td>VIN</td>
+                <td id="vin"></td>
+            </tr>
+            <tr>
+                <td>Front To Lift</td>
+                <td id="frToLift"></td>
+            </tr>
+            <tr>
+                <td>Lift To Front Tandem</td>
+                <td id="liftToFrTan"></td>
+            </tr>
+            <tr>
+                <td>Tandem Spacing</td>
+                <td id="tanSpacing"></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="card">
+
+        <h2>Empty Calibration</h2>
+
+        <table class="calibration-table">
+
+            <tr>
+                <th>Measurement</th>
+                <th>Raised</th>
+                <th>Lowered</th>
+            </tr>
+
+            <tr>
+                <td>Front Weight</td>
+                <td id="emFrWtUp"></td>
+                <td id="emFrWtDw"></td>
+            </tr>
+
+            <tr>
+                <td>Front Tandem Weight</td>
+                <td id="emFrTanWtUp"></td>
+                <td id="emFrTanWtDw"></td>
+            </tr>
+
+            <tr>
+                <td>Rear Tandem Weight</td>
+                <td id="emRearTanWtUp"></td>
+                <td id="emRearTanWtDw"></td>
+            </tr>
+
+            <tr>
+                <td>Tandem Sensor</td>
+                <td id="emTanSenUp"></td>
+                <td id="emTanSenDw"></td>
+            </tr>
+
+            <tr>
+                <td>Lift Weight</td>
+                <td>-</td>
+                <td id="emLiftWt"></td>
+            </tr>
+
+            <tr>
+                <td>Ride Bag Pressure</td>
+                <td>-</td>
+                <td id="emRBP"></td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Loaded Calibration</h2>
+
+        <table class="calibration-table">
+
+            <tr>
+                <th>Measurement</th>
+                <th>Raised</th>
+                <th>Lowered</th>
+            </tr>
+
+            <tr>
+                <td>Front Weight</td>
+                <td id="ldFrWtUp"></td>
+                <td id="ldFrWtDw"></td>
+            </tr>
+
+            <tr>
+                <td>Front Tandem Weight</td>
+                <td id="ldFrTanWtUp"></td>
+                <td id="ldFrTanWtDw"></td>
+            </tr>
+
+            <tr>
+                <td>Rear Tandem Weight</td>
+                <td id="ldRearTanWtUp"></td>
+                <td id="ldRearTanWtDw"></td>
+            </tr>
+
+            <tr>
+                <td>Tandem Sensor</td>
+                <td id="ldTanSenUp"></td>
+                <td id="ldTanSenDw"></td>
+            </tr>
+
+            <tr>
+                <td>Lift Weight</td>
+                <td>-</td>
+                <td id="ldLiftWt"></td>
+            </tr>
+
+            <tr>
+                <td>Ride Bag Pressure</td>
+                <td>-</td>
+                <td id="ldRBP"></td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="calibration.js"></script>
+
+</body>
+
+</html>
