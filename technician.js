@@ -74,16 +74,14 @@ window.loadCalibration = async function () {
         const snapshot =
             await getDocs(calibrationRef);
         // Clear previous results
-    document.getElementById("message").innerHTML = "";
-    document.getElementById("calibrationList").innerHTML = "";
+ document.getElementById("message").textContent = "";
+document.getElementById("calibrationList").innerHTML = "";
+document.getElementById("calibrationSection").style.display = "none";
 
-        if (snapshot.empty) {
+if (snapshot.empty) {
 
-    document.getElementById("message").innerHTML =
-        "<p style='color:red;'>VIN not found.</p>";
-
-    document.getElementById("calibrationSection").style.display =
-        "none";
+    document.getElementById("message").textContent =
+        "No matching VIN";
 
     return;
 }
@@ -119,6 +117,7 @@ window.loadCalibration = async function () {
 
         const calibrationList =
     document.getElementById("calibrationList");
+    document.getElementById("message").textContent = "";
     document.getElementById("calibrationSection").style.display = "block";
 
 calibrationList.innerHTML = "";
