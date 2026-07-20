@@ -96,25 +96,6 @@ a:hover {
     color: #6b7280;
     font-size: 14px;
 }
-.calibration-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:20px;
-    background:white;
-}
-
-.calibration-table th,
-.calibration-table td{
-    border:1px solid #dcdcdc;
-    padding:10px;
-    text-align:center;
-}
-
-.calibration-table th{
-    background:#f3f4f6;
-    font-weight:600;
-}
-
 .calibration-table tr:nth-child(even){
     background:#fafafa;
 }
@@ -140,6 +121,23 @@ a:hover {
 .calibration-table th{
     background:#f5f5f5;
 }
+
+.calibration-page{
+    width: 900px;
+    margin: 30px auto;
+}
+
+.compact-card{
+    background: white;
+    border: 1px solid #cfcfcf;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.compact-card h2{
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
 .spacing-container{
     background:#fff;
     padding:20px;
@@ -155,30 +153,28 @@ a:hover {
 
 .weights-wrapper{
     display:flex;
-    gap:20px;
+    justify-content:center;
+    gap:15px;
 }
 
 .weight-container{
-    flex:1;
-    background:#fff;
-    padding:20px;
-    border-radius:10px;
+    width:420px;
+    border:1px solid #cfcfcf;
+    padding:12px;
+    background:white;
 }
 
-.weight-table{
-    width:100%;
-    border-collapse:collapse;
+.spacing-grid{
+    display:grid;
+    grid-template-columns:180px 120px;
+    row-gap:8px;
+    column-gap:15px;
+    justify-content:center;
 }
 
-.weight-table th,
-.weight-table td{
-    border:1px solid #dcdcdc;
-    padding:8px;
-    text-align:center;
-}
-
-.weight-table th{
-    background:#f5f5f5;
+.spacing-grid label{
+    text-align:right;
+    font-weight:600;
 }
 
 @media(max-width:900px){
