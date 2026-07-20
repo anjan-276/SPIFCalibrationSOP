@@ -217,3 +217,26 @@ table th:first-child {
 .calibration-item:hover{
     background:#f3f3f3;
 }
+
+.message-area{
+    margin-top:15px;
+    margin-bottom:15px;
+    font-weight:600;
+}
+
+#calibrationSection{
+    margin-top:20px;
+}
+
+.calibration-item{
+    background:#fff;
+    border:1px solid #d0d0d0;
+    border-radius:6px;
+    padding:10px;
+    margin:8px 0;
+    cursor:pointer;
+}
+
+.calibration-item:hover{
+    background:#f5f5f5;
+}
