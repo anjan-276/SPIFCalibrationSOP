@@ -114,18 +114,54 @@ window.loadCalibration = async function () {
 
         });
 
-        if (latestDoc) {
-            sessionStorage.setItem(
-            "calibrationData",
-            JSON.stringify(
-            latestDoc.data()
-        )
+        const calibrationList =
+    document.getElementById("calibrationList");
+
+calibrationList.innerHTML = "";
+
+// Store all calibrations
+const calibrations = [];
+
+snapshot.forEach((doc) => {
+
+    calibrations.push({
+        id: doc.id,
+        data: doc.data()
+    });
+
+});
+
+// Sort newest first
+calibrations.sort((a, b) =>
+    b.id.localeCompare(a.id)
 );
 
-window.location.href =
-    "calibration.html";
+calibrations.forEach((calibration) => {
 
-        }
+    const item =
+        document.createElement("div");
+
+    item.className = "calibration-item";
+
+    item.textContent = calibration.id;
+
+    item.onclick = function () {
+
+        sessionStorage.setItem(
+            "calibrationData",
+            JSON.stringify(
+                calibration.data
+            )
+        );
+
+        window.location.href =
+            "calibration.html";
+
+    };
+
+    calibrationList.appendChild(item);
+
+});
 
     }
     catch (error) {
