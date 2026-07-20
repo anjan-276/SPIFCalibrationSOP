@@ -92,7 +92,11 @@ function displayCalibrationData(data){
             <td>-</td>
             <td>${data.ldRBP ?? ""}</td>
         </tr>
-    `;
+        <tr>
+            <td>VIN</td>
+            <td>${data.VIN ?? ""}</td>
+        </tr>
+    ;
 }
 
 window.loadCalibration = async function () {
