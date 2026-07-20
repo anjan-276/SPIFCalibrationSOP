@@ -147,17 +147,19 @@ calibrations.forEach((calibration) => {
 
     item.onclick = function () {
 
-        sessionStorage.setItem(
-            "calibrationData",
-            JSON.stringify(
-                calibration.data
-            )
-        );
+    sessionStorage.setItem(
+        "calibrationData",
+        JSON.stringify(
+            calibration.data
+        )
+    );
 
-        window.location.href =
-            "calibration.html";
+    window.open(
+        "calibration.html",
+        "_blank"
+    );
 
-    };
+};
 
     calibrationList.appendChild(item);
 
