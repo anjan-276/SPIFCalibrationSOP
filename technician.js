@@ -74,65 +74,48 @@ window.loadCalibration = async function () {
         const snapshot =
             await getDocs(calibrationRef);
         // Clear previous results
-        const snapshot =
-    await getDocs(calibrationRef);
+    document.getElementById("message").innerHTML = "";
+    document.getElementById("calibrationList").innerHTML = "";
 
-document.getElementById(
-    "calibrationList"
-).innerHTML = "";
+        if (snapshot.empty) {
 
-if (snapshot.empty) {
+    document.getElementById("message").innerHTML =
+        "<p style='color:red;'>VIN not found.</p>";
 
-    alert("VIN not found");
+    document.getElementById("calibrationSection").style.display =
+        "none";
+
     return;
-
 }
 
-const calibrations = [];
+        let latestDoc = null;
+        let latestDate = null;
 
-snapshot.forEach((doc) => {
+        snapshot.forEach((doc) => {
 
-    calibrations.push({
-        id: doc.id,
-        data: doc.data()
-    });
+            let dateString = doc.id;
 
-});
+            let docDate =
+                new Date(
+                    dateString
+                        .replaceAll("\\", "/")
+                        .replace(
+                            /(\d{4})\/(\d{2})\/(\d{2})-(\d{2}):(\d{2}):(\d{2})/,
+                            "$1-$2-$3T$4:$5:$6"
+                        )
+                );
 
-calibrations.sort((a, b) =>
-    b.id.localeCompare(a.id)
-);
+            if (
+                latestDate === null ||
+                docDate > latestDate
+            ) {
 
-calibrations.forEach((calibration) => {
+                latestDate = docDate;
+                latestDoc = doc;
 
-    const item =
-        document.createElement("div");
+            }
 
-    item.className =
-        "calibration-item";
-
-    item.textContent =
-        calibration.id;
-
-    item.onclick = function () {
-
-        sessionStorage.setItem(
-            "calibrationData",
-            JSON.stringify(
-                calibration.data
-            )
-        );
-
-        window.open(
-            "calibration.html",
-            "_blank"
-        );
-
-    };
-
-    calibrationList.appendChild(item);
-
-});
+        });
 
         const calibrationList =
     document.getElementById("calibrationList");
