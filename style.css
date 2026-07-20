@@ -139,6 +139,7 @@ a:hover {
     font-size: 18px;
 }
 .spacing-container{
+    width: 420px;
     background:#fff;
     padding:20px;
     border-radius:10px;
