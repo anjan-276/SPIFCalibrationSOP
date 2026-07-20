@@ -199,3 +199,7 @@ a:hover {
 .weight-table th{
     background:white;
 }
+table td:first-child,
+table th:first-child {
+    text-align: left;
+}
