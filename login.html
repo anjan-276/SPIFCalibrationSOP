@@ -3,26 +3,73 @@
 
 <head>
     <title>Technician Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h2>Technician Login</h2>
+<div class="hero">
 
-<input id="email" type="email" placeholder="Email">
-<br><br>
+    <div class="logo-panel">
+        <a href="https://allequiprepair.ca/" style="all:unset; cursor:pointer;"><img src="logo1.jpg" alt="Company Logo"></a>
+    </div>
 
-<input id="password" type="password" placeholder="Password">
-<br><br>
+    <div class="title-panel">
+        <h1>Technician Portal</h1>
+    </div>
 
-<button onclick="login()">
-    Login
-</button>
+</div>
 
-<p id="message"></p>
+<div class="login-container">
+
+    <div class="login-icon">
+        🔐
+    </div>
+
+    <h2>Technician Login</h2>
+
+    <input
+        id="email"
+        type="email"
+        placeholder="Email Address">
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Password">
+
+    <button onclick="login()">
+        Login
+    </button>
+
+    <p id="message"></p>
+
+</div>
 
 <script type="module" src="auth.js"></script>
-
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Company</h3>
+            <p><a href="https://allequiprepair.ca/" style="all:unset; cursor:pointer;">🏢 All Equip Repair & Service</a></p>
+            <p>󠀠 󠀠 󠀠 󠀠󠀠󠀠󠀠 󠀠 󠀠 Triaxle Dump Truck Calibration</p>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>📞 519-284-0582</p> 
+            <p>🌐 <a href="https://allequiprepair.ca/" style="all:unset; cursor:pointer;">www.allequiprepair.ca</a>
+        </div>
+        <div class="footer-section">
+            <h3>Location</h3>
+            <p>📍 <a href="https://www.google.com/search?q=2302+Road+125%2C+ST+Marys%2C+ON%2C+N4X+1C9&rlz=1C1UEAD_enCA1119CA1119&oq=2302+Road+125%2C+ST+Marys%2C+ON%2C+N4X+1C9&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRifBTIHCAIQIRiPAjIHCAMQIRiPAtIBBzg4N2owajeoAgiwAgHxBdFYBgmPhEBP&sourceid=chrome&source=chrome.ob&ie=UTF-8" style="all:unset; cursor:pointer;">2302 Road 125, ST Marys, ON, N4X 1C9</a>
+            <p>📍 <a href="https://www.google.com/search?q=21+Griffith+Rd%2C+Stratford%2C+ON+N5A+7R5&sca_esv=2d9f9570ab85a86e&rlz=1C1UEAD_enCA1119CA1119&sxsrf=APpeQntmyyUwi8XcucRKGlhvunVy-wYN7Q%3A1784642579604&ei=E3xfaoSeJKrw0PEP1LqkqAs&biw=1536&bih=756&ved=0ahUKEwjE84fY9-OVAxUqODQIHVQdCbUQ4dUDCBA&uact=5&oq=21+Griffith+Rd%2C+Stratford%2C+ON+N5A+7R5&gs_lp=Egxnd3Mtd2l6LXNlcnAiJTIxIEdyaWZmaXRoIFJkLCBTdHJhdGZvcmQsIE9OIE41QSA3UjUyBRAAGO8FMggQABiABBiiBDIFEAAY7wUyCBAAGIkFGKIESN0MUO0GWO0GcAF4AZABAJgB3AGgAdwBqgEDMi0xuAEDyAEA-AEB-AECmAICoALsAagCCsICFxAuGIAEGIoFGJECGOcGGOoCGLQC2AEBwgIdEC4YgAQYigUYkQIY5wYYxwEYrwEY6gIYtALYAQHCAhcQABiABBiKBRiRAhjnBhjqAhi0AtgBAcICEBAAGAMYjwEY6gIYtALYAQGYAw3xBaIVhNmZlvUsugYECAEYB5IHBTEuMC4xoAfZArIHAzItMbgH3wHCBwUwLjEuMcgHCoAIAQ&sclient=gws-wiz-serp" style="all:unset; cursor:pointer;">21 Griffith Rd, Stratford, ON, N5A 7R5</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 All Equip Repair & Service. All Rights Reserved.
+        |  Dump Truck Calibration System
+    </div>
+</footer>
 </body>
 
 </html>
