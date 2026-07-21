@@ -1,19 +1,14 @@
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
     getFirestore,
     collection,
     getDocs
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBJU0eISC9PZQbUNY-vS8DK1hRwDMeFVDk",
@@ -30,39 +25,28 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
-
     if (!user) {
         window.location.href = "login.html";
     }
-
 });
 
 function displayCalibrationData(data){
-
     const tbody =
         document.getElementById(
             "calibrationBody"
         );
-
-    
 }
 
 window.loadCalibration = async function () {
-
     const vin =
         document.getElementById("vinInput")
         .value
         .trim();
-
     if (!vin) {
-
         alert("Enter VIN");
         return;
-
     }
-
     try {
-
         const calibrationRef =
             collection(
                 db,
@@ -70,29 +54,22 @@ window.loadCalibration = async function () {
                 vin,
                 "calibrations"
             );
-
         const snapshot =
             await getDocs(calibrationRef);
         // Clear previous results
- document.getElementById("message").textContent = "";
-document.getElementById("calibrationList").innerHTML = "";
-document.getElementById("calibrationSection").style.display = "none";
-
-if (snapshot.empty) {
-
-    document.getElementById("message").textContent =
-        "No matching VIN";
-
-    return;
-}
+        document.getElementById("message").textContent = "";
+        document.getElementById("calibrationList").innerHTML = "";
+        document.getElementById("calibrationSection").style.display = "none";
+        if (snapshot.empty) {
+            document.getElementById("message").textContent =
+                "No matching VIN";
+            return;
+        }
 
         let latestDoc = null;
         let latestDate = null;
-
         snapshot.forEach((doc) => {
-
             let dateString = doc.id;
-
             let docDate =
                 new Date(
                     dateString
@@ -102,94 +79,62 @@ if (snapshot.empty) {
                             "$1-$2-$3T$4:$5:$6"
                         )
                 );
-
-            if (
-                latestDate === null ||
-                docDate > latestDate
-            ) {
-
+            if (latestDate === null || docDate > latestDate) {
                 latestDate = docDate;
                 latestDoc = doc;
-
             }
-
         });
-
         const calibrationList =
-    document.getElementById("calibrationList");
-    document.getElementById("message").textContent = "";
-    document.getElementById("calibrationSection").style.display = "block";
+        document.getElementById("calibrationList");
+        document.getElementById("message").textContent = "";
+        document.getElementById("calibrationSection").style.display = "block";
 
-calibrationList.innerHTML = "";
+        calibrationList.innerHTML = "";
+        // Store all calibrations
+        const calibrations = [];
+        snapshot.forEach((doc) => {
+            calibrations.push({
+                id: doc.id,
+                data: doc.data()
+            });
+        });
+        // Sort newest first
+        calibrations.sort((a, b) =>
+            b.id.localeCompare(a.id)
+        );
+        calibrations.forEach((calibration) => {
+            const item = document.createElement("div");
+            item.className = "calibration-item";
+            item.textContent = calibration.id;
+            item.onclick = function () {
+                sessionStorage.setItem(
+                    "calibrationData",
+                    JSON.stringify(
+                        calibration.data
+                    )
+                );
+                window.open(
+                    "calibration.html",
+                    "_blank"
+                );
 
-// Store all calibrations
-const calibrations = [];
-
-snapshot.forEach((doc) => {
-
-    calibrations.push({
-        id: doc.id,
-        data: doc.data()
-    });
-
-});
-
-// Sort newest first
-calibrations.sort((a, b) =>
-    b.id.localeCompare(a.id)
-);
-
-calibrations.forEach((calibration) => {
-
-    const item =
-        document.createElement("div");
-
-    item.className = "calibration-item";
-
-    item.textContent = calibration.id;
-
-    item.onclick = function () {
-
-    sessionStorage.setItem(
-        "calibrationData",
-        JSON.stringify(
-            calibration.data
-        )
-    );
-
-    window.open(
-        "calibration.html",
-        "_blank"
-    );
-
-};
-
-    calibrationList.appendChild(item);
-
-});
-
+            };
+            calibrationList.appendChild(item);
+        });
     }
     catch (error) {
-
         console.error(error);
-
         document.getElementById(
             "calibrationData"
         ).textContent =
             "Error loading data";
-
     }
-
 };
 
 window.logout = function () {
-
     signOut(auth)
         .then(() => {
-
             window.location.href =
                 "login.html";
-
         });
-
 };

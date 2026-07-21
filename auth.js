@@ -1,13 +1,8 @@
-import { initializeApp } from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
     getAuth,
     signInWithEmailAndPassword
-} from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBJU0eISC9PZQbUNY-vS8DK1hRwDMeFVDk",
@@ -19,42 +14,24 @@ const firebaseConfig = {
   measurementId: "G-DWMQZXKFJ9"
 };
 
-
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
-
-
 window.login = function(){
-
-    let email =
-        document.getElementById("email").value;
-
-    let password =
-        document.getElementById("password").value;
-
-
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
     signInWithEmailAndPassword(
         auth,
         email,
         password
     )
-
     .then(()=>{
-
         window.location.href =
         "technician.html";
-
     })
-
     .catch((error)=>{
-
         document.getElementById(
             "message"
         ).innerHTML =
         error.message;
-
     });
-
 };
