@@ -12,6 +12,7 @@ body{
     background:#e2e5e7;
     color: black;
 }
+
 .main-content{
     flex:1;
 }
@@ -233,7 +234,7 @@ a:hover{
 .weight-container{
     width:420px;
     border-radius:10px;
-    padding:6px;
+    padding:20px;
     background:white;
 }
 
