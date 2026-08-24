@@ -438,3 +438,9 @@ table th:first-child {
     background:#eef4ff;
     border-color:#4f8cff;
 }
+
+.lr-breakdown{
+    font-size:11px;
+    color:#6b7280;
+    font-weight:400;
+}

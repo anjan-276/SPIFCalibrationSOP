@@ -24,22 +24,30 @@ const AXLE_WEIGHT_FIELDS = [
 ];
 
 function resolveAxleWeight(data, field) {
-    if (data[field] !== undefined && data[field] !== null) {
-        return data[field];
-    }
     const left = data[field + "L"];
     const right = data[field + "R"];
-    if (left !== undefined && right !== undefined) {
-        return left + right;
+    if (data[field] !== undefined && data[field] !== null) {
+        return { total: data[field], left, right };
     }
-    return undefined;
+    if (left !== undefined && right !== undefined) {
+        return { total: left + right, left, right };
+    }
+    return { total: undefined, left: undefined, right: undefined };
 }
 
 for (const field of AXLE_WEIGHT_FIELDS) {
-    const value = resolveAxleWeight(data, field);
+    const { total, left, right } = resolveAxleWeight(data, field);
     const element = document.getElementById(field);
-    if (element && value !== undefined) {
-        element.textContent = value;
+    if (!element || total === undefined) continue;
+
+    element.textContent = "";
+    element.appendChild(document.createTextNode(String(total)));
+    if (left !== undefined && right !== undefined) {
+        const breakdown = document.createElement("span");
+        breakdown.className = "lr-breakdown";
+        breakdown.textContent = `L: ${left} / R: ${right}`;
+        element.appendChild(document.createElement("br"));
+        element.appendChild(breakdown);
     }
 }
 
