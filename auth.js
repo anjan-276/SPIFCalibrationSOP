@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 window.login = function(){
-    let email = document.getElementById("email").value;
+    let email = document.getElementById("email").value.trim();
     let password = document.getElementById("password").value;
     signInWithEmailAndPassword(
         auth,
