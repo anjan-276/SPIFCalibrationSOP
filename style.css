@@ -79,8 +79,10 @@ body{
     align-items:flex-start;
     flex-wrap:wrap;
     gap:20px;
+    width:100%;
     max-width:1200px;
     margin:30px auto;
+    box-sizing:border-box;
 }
 
 .containers-row .container{
