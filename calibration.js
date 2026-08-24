@@ -37,17 +37,18 @@ function resolveAxleWeight(data, field) {
 
 for (const field of AXLE_WEIGHT_FIELDS) {
     const { total, left, right } = resolveAxleWeight(data, field);
-    const element = document.getElementById(field);
-    if (!element || total === undefined) continue;
 
-    element.textContent = "";
-    element.appendChild(document.createTextNode(String(total)));
-    if (left !== undefined && right !== undefined) {
-        const breakdown = document.createElement("span");
-        breakdown.className = "lr-breakdown";
-        breakdown.textContent = `L: ${left} / R: ${right}`;
-        element.appendChild(document.createElement("br"));
-        element.appendChild(breakdown);
+    const totalEl = document.getElementById(field);
+    if (totalEl && total !== undefined) {
+        totalEl.textContent = total;
+    }
+    const leftEl = document.getElementById(field + "L");
+    if (leftEl) {
+        leftEl.textContent = left !== undefined ? left : "-";
+    }
+    const rightEl = document.getElementById(field + "R");
+    if (rightEl) {
+        rightEl.textContent = right !== undefined ? right : "-";
     }
 }
 
