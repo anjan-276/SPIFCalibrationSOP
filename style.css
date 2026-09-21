@@ -128,7 +128,11 @@ a:hover{
 }
 
 .latest{
-    background:#93f58a;
+    background:#88f37e;
+    font-weight:600;
+}
+.stale{
+    background:#b7ebb2;
     font-weight:600;
 }
 
